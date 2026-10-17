@@ -1,0 +1,23 @@
+name: green-robo-advisor
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - plotly
+  - cvxpy
+  - pyyaml
+  - pytest
+  - tabulate
+
+  - pip:
+      - streamlit==1.32.0
+      - yfinance
+      - protobuf>=3.20,<3.21
