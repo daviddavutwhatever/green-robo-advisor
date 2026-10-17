@@ -41,6 +41,29 @@ CSS = f"""
 #MainMenu, footer, [data-testid="stDecoration"] {{ visibility: hidden; }}
 header[data-testid="stHeader"] {{ background: transparent; }}
 
+/* Fallback: force the dark look even if .streamlit/config.toml is missing (e.g. not uploaded) */
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], .main {{ background-color: {NAVY} !important; }}
+.stApp, .stApp p, .stApp li, .stApp label, .stApp span, .stApp h1, .stApp h2, .stApp h3,
+[data-testid="stWidgetLabel"] p, [data-testid="stMarkdownContainer"] p {{ color: {TEXT}; }}
+.stApp [data-testid="stCaptionContainer"], .stApp small {{ color: {MUTED} !important; }}
+[data-baseweb="select"] > div, [data-baseweb="input"] > div, [data-baseweb="base-input"],
+.stTextInput input, .stDateInput input, [data-baseweb="select"] input {{
+    background-color: {PANEL} !important; color: {TEXT} !important; border-color: {BORDER} !important; }}
+[data-baseweb="select"] svg, [data-testid="stExpander"] svg {{ fill: {MUTED}; }}
+[data-baseweb="popover"] ul, [data-baseweb="menu"], [role="listbox"] {{ background-color: {PANEL_2} !important; }}
+[role="option"] {{ color: {TEXT} !important; }}
+[data-baseweb="tag"] {{ background-color: {TEAL} !important; }}
+[data-baseweb="tag"] span {{ color: {NAVY} !important; }}
+[data-testid="stExpander"] details, [data-testid="stExpander"] > div {{ background-color: {PANEL}; border-color: {BORDER}; }}
+[data-testid="stExpander"] summary p {{ color: {TEXT}; }}
+[role="slider"] {{ background-color: {TEAL} !important; box-shadow: none !important; }}
+[data-testid="stSliderThumbValue"], [data-testid="stThumbValue"] {{ color: {TEAL} !important; }}
+[data-testid="stCheckbox"] [role="checkbox"], [data-baseweb="checkbox"] > span {{ border-color: {SLATE}; }}
+[data-testid="stTooltipIcon"] svg {{ stroke: {MUTED}; }}
+[data-testid="stRadio"] [role="radiogroup"] label p {{ color: {TEXT} !important; }}
+[data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) p {{ color: {TEAL} !important; }}
+[data-testid="stAlert"] p {{ color: inherit; }}
+
 /* sidebar */
 section[data-testid="stSidebar"] {{ background: {PANEL}; border-right: 1px solid {BORDER}; }}
 section[data-testid="stSidebar"] h2 {{ font-size: 1.05rem; color: {TEXT}; margin-top: .6rem; }}
@@ -80,11 +103,15 @@ section[data-testid="stSidebar"] h2 {{ font-size: 1.05rem; color: {TEXT}; margin
               border-radius: 16px; padding: 22px 26px; margin: 1rem 0; }}
 .gr-profile .gr-level {{ font-family: 'Sora', sans-serif; font-size: 2rem; color: {TEAL}; margin: 0; }}
 .gr-profile .gr-sub {{ color: {MUTED}; margin: .2rem 0 1rem; }}
-.gr-stats {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }}
+.gr-stats {{ display: flex; flex-wrap: wrap; gap: 14px; }}
+.gr-stats > .gr-stat {{ flex: 1 1 170px; }}
 .gr-stat {{ background: {NAVY}; border: 1px solid {BORDER}; border-radius: 12px; padding: 14px 16px; }}
 .gr-stat small {{ color: {MUTED}; display: block; font-size: .8rem; margin-bottom: 4px; }}
-.gr-stat strong {{ font-family: 'Sora', sans-serif; font-size: 1.45rem; color: {TEXT};
-                  font-variant-numeric: tabular-nums; }}
+.gr-stat {{ min-width: 0; }}
+.gr-stat strong {{ font-family: 'Sora', sans-serif; font-size: clamp(1.05rem, 1.35vw, 1.4rem); color: {TEXT};
+                  font-variant-numeric: tabular-nums; display: block; white-space: nowrap;
+                  word-break: keep-all; overflow-wrap: normal; hyphens: none;
+                  overflow: hidden; text-overflow: ellipsis; }}
 .gr-stat.gr-accent strong {{ color: {TEAL}; }}
 .gr-stat.gr-esg strong {{ color: {GOLD}; }}
 .gr-stat span {{ color: {MUTED}; font-size: .8rem; display: block; margin-top: 2px; }}
